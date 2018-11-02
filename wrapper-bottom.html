@@ -1,0 +1,147 @@
+<style>
+.bsd-contribForm-gdpr-modal {
+    position: fixed;
+    height: auto;
+    bottom: 0;
+    z-index:  9999999999;
+    overflow:  hidden;
+    top: auto;
+    background: #e35e14;
+    color: white;
+    border: 0;
+    text-align: center;
+    -moz-box-shadow: 0px -10px 50px 0px rgba(0,0,0,0.25);
+    box-shadow: 0 -10px 50px 0px rgba(0,0,0,0.25);
+}
+
+.bsd-contribForm-gdpr-modal-content {
+    margin: 0 auto;
+    background: #e35e14;
+    color: white;
+    border: 0;
+    text-align: left;
+    padding:  0
+    ;
+    width: auto;
+}
+
+@media (min-width: 992px) {
+.bsd-contribForm-gdpr-modal-content {
+    width: 970px;
+}
+}
+
+@media (min-width: 768px) {
+.bsd-contribForm-gdpr-modal-content {
+    width: 750px;
+}
+}
+@media (min-width: 992px) {
+.bsd-contribForm-gdpr-modal-content {
+    width: 970px;
+}
+}
+@media (min-width: 992px) {
+.bsd-contribForm-gdpr-modal-content {
+    width: 970px;
+}
+}
+.bsd-contribForm-gdpr-modal-content h3, .bsd-contribForm-gdpr-modal-content p {
+    color: white;
+    display: inline;
+    text-align:  left;
+    font-size:  16px;
+}
+
+.bsd-contribForm-gdpr-modal-content input.gdpr-button {
+    -webkit-appearance: none;
+    background: #252728;
+    border: 2px solid transparent;
+    padding: 1rem 2rem;
+    color: white;
+    font-size: 1.25rem;
+    outline: none;
+    border-radius: 2px;
+    box-sizing: border-box;
+    width: auto;
+    display: block;
+    transition: 0.3s all ease;
+    outline: none;
+    text-align:  center;
+    color: white !important;
+    text-decoration:  none;
+    line-height: 0;
+}
+
+
+.bsd-contribForm-gdpr-modal-content h3 {
+    display: none;
+    }
+
+
+
+.bsd-contribForm-gdpr-modal-content div div a {
+    text-decoration: none !important;
+}
+
+.col-md-10, .col-md-2 {
+    padding: 5px 10px 5px 10px;
+    float:  left;
+}
+
+.bsd-contribForm-gdpr-modal-content .col-md-2:nth-of-type(2) {
+    display:  none;
+}
+
+.bsd-contribForm-gdpr-modal-content a {
+    color: white;
+}
+
+.reverse-tabs .donate-tab-gm {
+  margin-left: auto;
+}
+.reverse-tabs .donate-tab-gn {
+  margin-left: 0;
+}
+</style>
+
+<script>
+var getCookie = function(cname) {
+  var name = cname + "=";
+  var ca = document.cookie.split(';');
+  for (var i = 0; i < ca.length; i++) {
+    var c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+};
+
+var changeDonateTabPositions = function() {
+  $('.donate-tab-container').addClass('reverse-tabs');
+  $('.donate-tab-gn.donate-tab').after( $('.donate-tab-gm.donate-tab') );
+};
+
+$(function(){
+  var showCashSectionIfAlreadyDD = function() {
+    if (getCookie("guid")) {
+      var guid = getCookie("guid");
+      jQuery.getJSON("https://act.reprieve.org.uk/page/graph/loe/" + guid, function(graph) {
+        if (typeof graph["group_regular_donors"] !== "undefined" && graph["group_regular_donors"] !== false){
+          // is a dd giver
+          changeDonateTabPositions();
+          $('.donate-tab-gn.donate-tab').click();
+        }
+      });
+    }
+  }();
+});
+
+</script>
+
+</body>
+</html>
